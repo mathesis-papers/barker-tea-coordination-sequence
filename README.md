@@ -5,13 +5,15 @@
 We prove Colin Barker's generating-function and recurrence conjectures of February 11, 2018 in the FORMULA fields of OEIS A299285 and A299286 for the tea uniform tiling. An exact distance formula reduces its graph spheres to integer hexagons in triangular layers. Their counts give a quadratic quasipolynomial of least period four, establish Stefano Spezia's conditional formula of June 8, 2024, and give the corresponding cubic ball count. We also prove that the proposed recurrences have the least possible eventual orders, six and seven. The same layer count proves the companion tcd formulas in A299287 and A299288. For arbitrary orientations of the tetrahedron–octahedron slabs, the tcd and tea counts are sharp lower and upper bounds, with sphere-count gap floor(n^2/8).
 
 - PDF: [frozen public file](paper.pdf)
+- DOI: [https://doi.org/10.5281/zenodo.24409050](https://doi.org/10.5281/zenodo.24409050)
+- Concept DOI: [https://doi.org/10.5281/zenodo.24409049](https://doi.org/10.5281/zenodo.24409049)
 - License: CC-BY-4.0
 - Version: 2
 - Mathesis record: [barker-tea-coordination-sequence](https://mathesis-omega-research.apps.chrono-ai.fun/papers/barker-tea-coordination-sequence?version=2)
 
 ## How to cite
 
-Haobo Ma, Wenlin Zhang (2026). Proof of Barker's tea-tiling conjectures: OEIS A299285–A299286, FORMULA (February 11, 2018). Mathesis, version 2. https://mathesis-omega-research.apps.chrono-ai.fun/papers/barker-tea-coordination-sequence?version=2
+Haobo Ma, Wenlin Zhang (2026). Proof of Barker's tea-tiling conjectures: OEIS A299285–A299286, FORMULA (February 11, 2018). Mathesis, version 2. https://doi.org/10.5281/zenodo.24409050
 
 ## Statement progress
 
