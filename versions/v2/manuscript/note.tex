@@ -1,0 +1,452 @@
+\documentclass[11pt]{article}
+\usepackage[margin=.85in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,array}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue,linkcolor=blue,breaklinks=true]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\N}{\mathbb N}
+\newcommand{\T}{\mathcal T}
+\newcommand{\Hh}{\mathcal H}
+\title{Proof of Barker's tea-tiling conjectures\\OEIS A299285--A299286, FORMULA\\(February 11, 2018)}
+\author{Haobo Ma\\\small ChronoAI Pte Ltd, Singapore
+\and Wenlin Zhang\\\small National University of Singapore\\\small ChronoAI Pte Ltd, Singapore}
+\date{November 8, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We prove Colin Barker's generating-function and recurrence conjectures of
+February 11, 2018 in the FORMULA fields of OEIS A299285 and A299286
+for the tea uniform tiling.
+An exact distance formula reduces its graph spheres to integer hexagons in
+triangular layers. Their counts give a quadratic quasipolynomial of least
+period four, establish Stefano Spezia's conditional formula of June 8, 2024,
+and give the corresponding cubic ball count. We also prove that the proposed
+recurrences have the least possible eventual orders, six and seven. The same
+layer count proves the companion tcd formulas in A299287 and A299288.
+For arbitrary orientations of the tetrahedron--octahedron slabs, the tcd
+and tea counts are sharp lower and upper bounds, with sphere-count gap
+$\lfloor n^2/8\rfloor$.
+\end{abstract}
+
+\section{The conjectures and their graph}
+For a vertex in the edge graph of the tea uniform tiling, let $a(n)$ count
+vertices at graph distance exactly $n$, and put $b(n)=\sum_{m=0}^n a(m)$.
+Barker's formulas in the FORMULA fields of A299285 and A299286
+\cite{shell,ball} predict the generating functions below. Sloane's
+June 12, 2024 FORMULA annotation in A299285 says,
+``I suspect Barker's formulas only conjectures.'' Spezia's June 8, 2024
+FORMULA contribution begins ``If the above formulas are true''; its
+closed form is consequently a conditional deduction, rather than a
+graph-counting proof. The paired A299286 entry contains Barker's
+generating function and recurrence with the same February 11, 2018 date.
+The tiling is Gr\"unbaum's tiling~4: triangular-prism slabs alternate with
+reflected tetrahedron--octahedron slabs \cite[p.~54, List~1, no.~4]{grunbaum}.
+
+Geometric counting proofs for planar coordination sequences are given by
+Goodman-Strauss and Sloane \cite{coloring}. Inoue and Nakamura develop
+Ehrhart-theoretic methods for periodic graphs \cite{inoue1,inoue2}; their
+second paper gives a general algorithm for obtaining explicit growth
+series. Its three-dimensional examples are the carbon allotropes K6 and
+CFS, rather than the two tilings considered here. For tea and tcd, the
+proof below gives exact distances and counts directly, and also applies to
+nonperiodic choices of slab orientations.
+
+Here is an integer coordinate model, specifying the graph completely.
+Its vertices are $(i,j,k)\in\Z^3$. Within a layer, the displacements are
+$\pm(1,0,0)$, $\pm(0,1,0)$ and $\pm(1,-1,0)$.
+Write $e_1=(1,0)$, $e_2=(0,1)$ and $\T=\{0,e_1,e_2\}$.
+Between layers $k$ and $k+1$, the allowed upper-minus-lower planar
+displacements are
+\begin{equation}\label{edges}
+\begin{array}{c|cccc}
+k\bmod4&0&1&2&3\\\hline
+\text{displacements}&\T&\{0\}&-\T&\{0\}.
+\end{array}
+\end{equation}
+All edges are undirected. To identify the geometry explicitly, embed $e_1,e_2$
+as unit vectors at $60^\circ$ and put $\delta=(e_1+e_2)/3$.
+The successive layer offsets, modulo four, are $0,-\delta,-\delta,0$;
+the gaps are $\sqrt{2/3},1,\sqrt{2/3},1$.
+The three edges across a tetrahedron--octahedron slab have planar offsets
+$-\delta,e_1-\delta,e_2-\delta$, or their negatives; across a prism slab
+there is just the vertical edge. These are exactly \eqref{edges} for the
+reflected slab construction in tiling~4.
+Planar translations, together with
+$(i,j,k)\mapsto(-i,-j,k+2)$ and
+$(i,j,k)\mapsto(-i,-j,1-k)$, preserve \eqref{edges} and act transitively
+on vertices. It therefore suffices to count about $(0,0,0)$.
+
+\begin{theorem}\label{main}
+Let $(c_0,c_1,c_2,c_3)=(16,17,12,17)$ and
+$(d_0,d_1,d_2,d_3)=(32,38,24,30)$. Then $a(0)=1$ and, for $n\ge1$,
+\begin{equation}\label{shellformula}
+a(n)=\frac{63n^2+c_{n\bmod4}}8.
+\end{equation}
+For every $n\ge0$,
+\begin{equation}\label{ballformula}
+b(n)=\frac{84n^3+126n^2+104n+d_{n\bmod4}}{32}.
+\end{equation}
+With $P(x)=1+8x+14x^2+17x^3+14x^4+8x^5+x^6$,
+\begin{equation}\label{gf}
+\sum_{n\ge0}a(n)x^n=\frac{P(x)}{(1-x)^3(1+x)(1+x^2)},\qquad
+\sum_{n\ge0}b(n)x^n=\frac{P(x)}{(1-x)^4(1+x)(1+x^2)}.
+\end{equation}
+\end{theorem}
+
+\section{An exact distance formula}
+For nonnegative integers $p,q$, define the integer hexagon
+\[
+\Hh(p,q)=\{(i,j)\in\Z^2:-q\le i,j,i+j\le p\}.
+\]
+The set of sums of $p$ members of $\T$ and $q$ members of $-\T$ is
+exactly $\Hh(p,q)$. Indeed its elements satisfy the six inequalities.
+Conversely, for a point in the hexagon the sum of its positive coordinates
+is at most $p$, and the sum of the absolute values of its negative
+coordinates is at most $q$. Taking the corresponding copies of
+$e_1,e_2,-e_1,-e_2$, and padding with zeros, gives the required sum.
+
+Let $p_k,q_k$ count the positive and negative special displacements in a
+monotone vertical path from layer zero to layer $k$. From \eqref{edges},
+\begin{equation}\label{slabs}
+(p_k,q_k)=
+\begin{cases}
+(\lfloor(k+3)/4\rfloor,\lfloor(k+1)/4\rfloor),&k\ge0,\\
+(\lfloor(-k+2)/4\rfloor,\lfloor(-k)/4\rfloor),&k<0.
+\end{cases}
+\end{equation}
+Thus the planar endpoints attainable in $|k|$ vertical steps are precisely
+$\Hh(p_k,q_k)$. Define
+\begin{align*}
+R_{p,q}(i,j)=\max\{&0,i-p,j-p,i+j-p,\\
+                  &-q-i,-q-j,-q-i-j\}.
+\end{align*}
+\begin{lemma}\label{metric}
+For every $(i,j,k)\in\Z^3$ the distance from the origin is
+\[
+D(i,j,k)=|k|+R_{p_k,q_k}(i,j).
+\]
+\end{lemma}
+\begin{proof}
+First, the triangular-lattice distance of $(i,j)$ from $\Hh(p,q)$ equals
+$R=R_{p,q}(i,j)$. Each horizontal edge changes each of the six affine
+expressions defining $R$ by at most one, so at least $R$ steps are needed.
+If $R>0$, a step towards zero reduces it by exactly one: for $i,j\ge0$
+decrease a positive coordinate; for $i,j\le0$ increase a negative
+coordinate; for $i>0>j$ use $(-1,1)$, and for $j>0>i$ use $(1,-1)$.
+In the first two cases $R$ is respectively
+$\max(0,i+j-p)$ and $\max(0,-i-j-q)$.
+In the third case it is $\max(0,i-p,-j-q)$, and the fourth is symmetric.
+These formulas verify the asserted decrease, including axis points.
+After $R$ steps the point lies in the hexagon.
+Reverse that horizontal path after a monotone vertical path to its endpoint;
+this constructs a path of length $D$.
+
+For the reverse inequality, $D$ is one-Lipschitz on every edge.
+This holds horizontally by the preceding affine-expression bound.
+Orient a vertical edge away from layer zero. At a prism slab its planar
+coordinates and $p,q$ are unchanged. At a positive special slab its new
+data are $(z+t,p+1,q)$ with $t\in\T$.
+Each expression in the defining maximum for the new residual is either
+the corresponding old expression or that expression minus one;
+the constant zero stays zero. Hence $R-1\le R'\le R$.
+The negative special slab has data $(z-t,p,q+1)$ and the same bound.
+Since $|k|$ increases by one, $0\le D'-D\le1$ in either case.
+Finally $D(0,0,0)=0$, so every path from the origin has length at least
+$D$. This proves the formula.
+\end{proof}
+
+\section{Counting layers}
+\begin{lemma}\label{hexcount}
+For $p,q\ge0$,
+\begin{equation}\label{hex}
+|\Hh(p,q)|=C(p,q):=\frac{p^2+4pq+q^2+3p+3q+2}{2}.
+\end{equation}
+The number of planar points with residual exactly $r$ is $C(p,q)$ for
+$r=0$, and $3(p+q)+6r$ for $r\ge1$.
+\end{lemma}
+\begin{proof}
+For each $-q\le i\le-1$ the allowed row has $p+q+1+i$ points;
+for $0\le i\le p$ it has $p+q+1-i$ points.
+Summing these arithmetic progressions gives \eqref{hex}.
+For $r\ge0$, the residual is at most $r$ exactly on
+$\Hh(p+r,q+r)$. For $r\ge1$, subtract \eqref{hex} at
+$(p+r-1,q+r-1)$ from its value at $(p+r,q+r)$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{main}]
+For $n\ge1$, Lemmas~\ref{metric} and \ref{hexcount} give
+\begin{equation}\label{layersum}
+a(n)=C(p_n,q_n)+C(p_{-n},q_{-n})+
+\sum_{k=-n+1}^{n-1}\bigl(3(p_k+q_k)+6(n-|k|)\bigr).
+\end{equation}
+The floor formulas imply
+$p_m+q_m+p_{-m}+q_{-m}=m$ for $m\ge1$.
+Also $p_0=q_0=0$ and
+$\sum_{k=-n+1}^{n-1}(n-|k|)=n^2$.
+Writing
+\[
+Q_n=p_n^2+4p_nq_n+q_n^2+p_{-n}^2+4p_{-n}q_{-n}+q_{-n}^2,
+\]
+equation~\eqref{layersum} becomes
+\[
+a(n)=\frac{15n^2+Q_n+4}{2}.
+\]
+For $n=4t+s$, the endpoint parameters and $Q_n$ are
+\[
+\begin{array}{c|c|c|c}
+s&(p_n,q_n)&(p_{-n},q_{-n})&Q_n\\\hline
+0&(t,t)&(t,t)&12t^2\\
+1&(t+1,t)&(t,t)&12t^2+6t+1\\
+2&(t+1,t)&(t+1,t)&12t^2+12t+2\\
+3&(t+1,t+1)&(t+1,t)&12t^2+18t+7
+\end{array}
+\]
+Substitution proves \eqref{shellformula}; the radius-zero sphere has one
+vertex. If $u(n)=\cos(\pi n/2)\in\{1,0,-1,0\}$ by residue class, the
+same formula is
+\begin{equation}\label{spezia}
+a(n)=\frac{31-3(-1)^n+126n^2+4u(n)}{16}\quad(n\ge1).
+\end{equation}
+This is Spezia's conditional formula in A299285, with $u(n)=$ A056594$(n)$~\cite{periodic}.
+Summing \eqref{spezia}, using
+$\sum_{m=1}^n u(m)=0,0,-1,-1$ for $n\equiv0,1,2,3\pmod4$,
+gives \eqref{ballformula}.
+Finally,
+\[
+\sum_{n\ge0}a(n)x^n=1+\frac1{16}\left(
+\frac{126x(1+x)}{(1-x)^3}+\frac{31x}{1-x}
++\frac{3x}{1+x}+\frac4{1+x^2}-4\right).
+\]
+Combining fractions gives the first identity in \eqref{gf}.
+Partial sums divide the generating function by $1-x$, giving the second.
+\end{proof}
+
+\begin{corollary}\label{recurrences}
+The following recurrences hold for $n\ge7$:
+\begin{align*}
+a(n)&=2a(n-1)-a(n-2)+a(n-4)-2a(n-5)+a(n-6),\\
+b(n)&=3b(n-1)-3b(n-2)+b(n-3)+b(n-4)\\
+&\hspace{12mm}-3b(n-5)+3b(n-6)-b(n-7).
+\end{align*}
+Their least eventual orders over $\mathbb Q$ are six and seven,
+respectively. The least quasipolynomial period is four for each sequence
+(for $a(n)$ on $n\ge1$).
+\end{corollary}
+\begin{proof}
+Multiply \eqref{gf} by its denominators and compare coefficients beyond
+degree six. The numerators do not cancel any denominator factor:
+$P(1)=63$, $P(-1)=-3$, and $P(x)\equiv-x\pmod{x^2+1}$.
+An eventual recurrence with polynomial $E(x)$ makes the generating
+function times $E(x)$ a polynomial; therefore the reduced denominator
+divides $E(x)$. Its degree is the minimum possible order.
+Similarly, an eventual quasipolynomial of period $h$ has a generating
+function whose poles are $h$th roots of unity, by summing each polynomial
+residue class separately. The uncancelled poles at $i,-i$ force $4\mid h$;
+the displayed formulas supply period four.
+\end{proof}
+
+\section{The cross-referenced tcd tiling}
+\begin{corollary}\label{tcdresults}
+The formulas in the FORMULA fields of A299287 and A299288
+dated February 11, 2018, and Spezia's June 8, 2024 exponential
+generating function in A299287, hold for the tcd graph. Its sphere and
+ball recurrences have least eventual orders four and five; both least
+quasipolynomial periods are two.
+\end{corollary}
+\begin{proof}
+The same argument gives the formulas in A299287 and A299288
+\cite{tcd,tcdball}, concerning Gr\"unbaum's tiling~3. Its tetrahedron--octahedron
+slabs have the same orientation rather than alternating orientations:
+replace both even columns of \eqref{edges} by $\T$.
+Consequently, for $k\ge0$ its parameters are
+$(p_k,q_k)=(\lceil k/2\rceil,0)$ and
+$(p_{-k},q_{-k})=(0,\lfloor k/2\rfloor)$.
+The distance proof and \eqref{layersum} apply without change; in particular
+the same $3(p+q)+6r$ counts the nonzero residuals.
+Writing $\alpha(n)$ for its spheres and $\beta(n)$ for its balls gives
+$Q_n=\lceil n/2\rceil^2+\lfloor n/2\rfloor^2$ and hence
+\[
+\alpha(0)=1,\qquad
+\alpha(n)=\frac{31n^2+8+\epsilon_n}{4}\ (n\ge1),\qquad
+\beta(n)=\frac{62n^3+93n^2+82n+24+3\epsilon_n}{24}\ (n\ge0),
+\]
+where $\epsilon_n$ is zero for even $n$ and one for odd $n$.
+Summing the quadratic formula, or its generating series, gives
+\[
+\sum_{n\ge0}\alpha(n)x^n=\frac{1+8x+13x^2+8x^3+x^4}{(1-x)^3(1+x)},\qquad
+\sum_{n\ge0}\beta(n)x^n=\frac{1+8x+13x^2+8x^3+x^4}{(1-x)^4(1+x)}.
+\]
+These are Barker's formulas and imply, for $n\ge5$,
+\begin{align*}
+\alpha(n)&=2\alpha(n-1)-2\alpha(n-3)+\alpha(n-4),\\
+\beta(n)&=3\beta(n-1)-2\beta(n-2)-2\beta(n-3)+3\beta(n-4)-\beta(n-5).
+\end{align*}
+The numerator takes values $31$ and $-1$ at $1$ and $-1$, so these
+recurrences have least eventual orders four and five, and each
+quasipolynomial has least period two, by the pole argument above.
+Finally Spezia's June 8, 2024 exponential generating function in A299287 is
+\[
+\sum_{n\ge0}\alpha(n)\frac{x^n}{n!}
+=\frac{(8+31x+31x^2)\cosh x+(9+31x+31x^2)\sinh x-4}{4}.
+\]
+Indeed apply $31(x\,d/dx)^2$ to $\cosh x+\sinh x$, add
+$8\cosh x+9\sinh x$, divide by four, and subtract one to correct
+the constant term. This proves all formulas displayed in these two
+companion entries.
+\end{proof}
+
+\section{Arbitrary slab orientations}
+Keep the triangular layers and the prism slabs at odd $k$ in
+\eqref{edges}, but independently choose $\T$ or $-\T$ at each even
+boundary $k$. This defines a graph $G_\sigma$ for every two-sided sign
+sequence $\sigma$, without a periodicity hypothesis. Let $a_\sigma(n)$
+count its sphere about $(0,0,0)$ and $b_\sigma(n)$ its ball. For a
+monotone path to layer $k$, let $p_k,q_k$ count the $\T,-\T$
+displacements respectively, reversing signs on downward crossings.
+
+\begin{corollary}\label{arbitrary}
+For $n\ge1$, put $r=\lceil n/2\rceil$ and $s=\lfloor n/2\rfloor$.
+Then
+\[
+a_\sigma(n)=\alpha(n)+p_nq_n+p_{-n}q_{-n},\qquad
+\alpha(n)\le a_\sigma(n)\le a(n).
+\]
+Both bounds hold for every $n\ge0$, simultaneously, with the lower
+bound attained by tcd and the upper bound by tea. The balls satisfy
+$\beta(n)\le b_\sigma(n)\le b(n)$. In particular,
+\[
+a(n)-\alpha(n)=\left\lfloor\frac{n^2}{8}\right\rfloor,
+\qquad
+b(n)-\beta(n)=\sum_{m=1}^n\left\lfloor\frac{m^2}{8}\right\rfloor.
+\]
+For $n\ge1$, equality in the lower sphere bound holds exactly when
+$p_nq_n=p_{-n}q_{-n}=0$. Equality in the upper bound holds exactly when
+$|p_n-q_n|\le1$ and $|p_{-n}-q_{-n}|\le1$.
+\end{corollary}
+\begin{proof}
+The distance proof uses only that an outward special crossing adds
+one positive or negative slab. It therefore holds for $G_\sigma$.
+The endpoint identities are $p_n+q_n=r$, $p_{-n}+q_{-n}=s$.
+Also $p_m+q_m+p_{-m}+q_{-m}=m$ for every $m\ge1$.
+The layer sum consequently remains
+\[
+a_\sigma(n)=\frac{15n^2+Q_n+4}{2},\quad
+Q_n=r^2+s^2+2(p_nq_n+p_{-n}q_{-n}).
+\]
+The first term is $\alpha(n)=(15n^2+r^2+s^2+4)/2$.
+For nonnegative integers of sum $r$, the product ranges from zero to
+$\lfloor r^2/4\rfloor$, with maximum exactly when their difference is
+at most one; the same holds for $s$. Now
+\[
+\left\lfloor\frac{r^2}{4}\right\rfloor+
+\left\lfloor\frac{s^2}{4}\right\rfloor
+=\left\lfloor\frac{n^2}{8}\right\rfloor.
+\]
+For $n=4t,4t+1,4t+2,4t+3$, both sides are respectively
+$2t^2,2t^2+t,2t^2+2t,2t^2+3t+1$.
+The tcd parameters put each product at zero; the tea parameters in
+\eqref{slabs} balance each pair and attain both maxima. This proves
+the inequalities, the equality conditions and the exact gap.
+All radius-zero counts are one. Summing proves the ball statements.
+\end{proof}
+This extension is not posed in the cited entries. It concerns the
+specified layered graphs and does not assert vertex transitivity for
+an arbitrary sign sequence.
+
+\section{Coverage and verification}
+\noindent\begin{tabular}{@{}p{.48\linewidth}p{.47\linewidth}@{}}
+\toprule
+Source item & Mathematical coverage\\\midrule
+A299285, Barker, Feb.~11, 2018: generating function and recurrence
+& Proved: Theorem~\ref{main}, Corollary~\ref{recurrences}.\\[3pt]
+A299285, Spezia, June~8, 2024: conditional closed form
+& Proved for the graph: equation~\eqref{spezia}; the prior conditional algebraic implication is credited to Spezia.\\[3pt]
+A299286, Barker, Feb.~11, 2018: partial-sum generating function and recurrence
+& Proved: Theorem~\ref{main}, Corollary~\ref{recurrences}.\\[3pt]
+A056594: period-four cosine sequence
+& Its defining values identify $u(n)$ in \eqref{spezia}.\\[3pt]
+A299287, FORMULA, Barker, Feb.~11, 2018: closed forms, generating function, recurrence
+& Proved: Corollary~\ref{tcdresults}, including least order four and least period two.\\[3pt]
+A299287, FORMULA, Spezia, June~8, 2024: exponential generating function
+& Proved: Corollary~\ref{tcdresults}, by summing the sphere formula.\\[3pt]
+A299288, FORMULA, Barker, Feb.~11, 2018: ball formulas, generating function, recurrence
+& Proved: Corollary~\ref{tcdresults}, including least order five and least period two.\\[3pt]
+A299285--A299288, DATA and finite sequence programs
+& Finite checks agree; the all-radius statements have the written proofs above.\\[3pt]
+Arbitrary signs, sharp bounds, equality cases and tea--tcd gap
+& Not posed; proved in Corollary~\ref{arbitrary}.\\[3pt]
+Other tilings in the common OEIS cross-reference list
+& Not covered by this note.\\\bottomrule
+\end{tabular}
+
+\medskip
+The pinned Lean file
+\href{https://github.com/the-omega-institute/trureturing/blob/e7f7c25c7de35e89418be730f50ec8fb94949133/D5/S3/StatisticalMechanics/TeaCoordinationSequence.lean}{\texttt{TeaCoordinationSequence.lean}}
+defines \texttt{teaGraph} by \eqref{edges} and \texttt{shell} as its
+distance-sphere cardinality. Its declaration
+\begin{quote}\small
+\texttt{D5.S3.StatisticalMechanics.TeaCoordinationSequence.result}
+\end{quote}
+proves \texttt{claim}: the four identities
+$8a(n)=63n^2+c_{n\bmod4}$ for $n>0$.
+The identification with Gr\"unbaum's tiling, the generating functions,
+the partial sums, the least-order and least-period assertions, and all tcd
+results, and the arbitrary-orientation extension have the written proofs above.
+The accompanying \texttt{verify.py} supplies
+finite integer checks for both graphs: breadth-first spheres through radius 32,
+the distance formula at every vertex in each ball, the tabulated OEIS
+values, and layer sums and generating-function coefficients through 1000.
+For arbitrary orientations, it checks all 256 assignments on the eight even
+boundaries $-8,-6,\ldots,6$, with graph distances and bounds through radius
+eight. It also checks the tea--tcd gaps through radius 1000.
+Its JSON output states the finite parameter ranges.
+
+\begin{thebibliography}{9}
+\bibitem{shell} N.~J.~A. Sloane, OEIS A299285,
+\emph{Coordination sequence for ``tea'' 3D uniform tiling}, created
+February 10, 2018; formulas by Colin Barker, February 11, 2018, and
+Stefano Spezia, June 8, 2024; Sloane annotation June 12, 2024.
+\url{https://oeis.org/A299285}. Revision 25, consulted November 8, 2026.
+\bibitem{ball} N.~J.~A. Sloane, OEIS A299286,
+\emph{Partial sums of A299285}, created February 10, 2018;
+conjectures by Colin Barker, February 11, 2018.
+\url{https://oeis.org/A299286}. Revision 9, consulted November 8, 2026.
+\bibitem{periodic} W. Lang, OEIS A056594,
+\emph{Period 4: repeat [1,0,-1,0]; expansion of 1/(1+x\textasciicircum 2)},
+\url{https://oeis.org/A056594}. Revision 187, consulted November 8, 2026.
+\bibitem{tcd} N.~J.~A. Sloane, OEIS A299287,
+\emph{Coordination sequence for ``tcd'' 3D uniform tiling},
+Barker formulas dated February 11, 2018; Spezia exponential generating function
+dated June 8, 2024. \url{https://oeis.org/A299287}. Consulted November 8, 2026.
+\bibitem{tcdball} N.~J.~A. Sloane, OEIS A299288,
+\emph{Partial sums of A299287}, Barker formulas dated February 11, 2018.
+\url{https://oeis.org/A299288}. Revision 12, consulted November 8, 2026.
+\bibitem{grunbaum} B. Gr\"unbaum, \emph{Uniform tilings of 3-space},
+Geombinatorics \textbf{4} (1994), 49--56.
+\url{https://faculty.washington.edu/moishe/branko/BG199.Uniform\%20Tilings\%20of\%203-Space.pdf}.
+\bibitem{coloring} C. Goodman-Strauss and N.~J.~A. Sloane,
+\emph{A coloring-book approach to finding coordination sequences},
+Acta Crystallographica A \textbf{75} (2019), 121--134.
+\url{https://doi.org/10.1107/S2053273318014481}.
+\url{https://arxiv.org/abs/1803.08530v3} (January 31, 2019).
+\bibitem{inoue1} T. Inoue and Y. Nakamura,
+\emph{Ehrhart theory on periodic graphs},
+Algebraic Combinatorics \textbf{7} (2024), 969--1010.
+\url{https://doi.org/10.5802/alco.367}.
+\url{https://arxiv.org/abs/2305.08177v2} (April 9, 2024),
+especially Section~5.3.
+\bibitem{inoue2} T. Inoue and Y. Nakamura,
+\emph{Ehrhart theory on periodic graphs II: Stratified Ehrhart ring theory},
+Algebraic Combinatorics \textbf{8} (2025), 1193--1232.
+\url{https://doi.org/10.5802/alco.445}.
+\url{https://arxiv.org/abs/2310.19569v2} (July 3, 2024),
+especially Sections~5.3--5.4.
+\end{thebibliography}
+\noindent\small\copyright\ 2026 Haobo Ma and Wenlin Zhang.
+Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0).
+\url{https://creativecommons.org/licenses/by/4.0/}
+\end{document}

@@ -1,0 +1,74 @@
+{
+  "status": "pass",
+  "coverage": "Finite integer checks of tea, tcd and arbitrary slab-orientation graphs, distances, sphere and ball formulas.",
+  "arbitrary_orientations": {
+    "boundary_levels": [
+      -8,
+      -6,
+      -4,
+      -2,
+      0,
+      2,
+      4,
+      6
+    ],
+    "sign_assignments": 256,
+    "bfs_radius": 8,
+    "total_vertices": 413696,
+    "coverage": "Distances, exact orientation correction, sharp sphere and ball bounds, sphere equality conditions."
+  },
+  "tea_tcd_gap_radii": [
+    0,
+    1000
+  ],
+  "bfs_radius": 32,
+  "bfs_vertices": 90153,
+  "tcd_bfs_vertices": 88729,
+  "distance_formula": "Every vertex of graph distance at most 32.",
+  "oeis_a299285_terms": 43,
+  "oeis_a299286_terms": 39,
+  "oeis_a299287_terms": 44,
+  "oeis_a299288_terms": 40,
+  "layer_sum_radii": [
+    0,
+    1000
+  ],
+  "hexagon_parameters": {
+    "plus": [
+      0,
+      8
+    ],
+    "minus": [
+      0,
+      8
+    ],
+    "shell_depth": [
+      1,
+      6
+    ]
+  },
+  "edge_parameter_box": {
+    "first": [
+      -8,
+      8
+    ],
+    "second": [
+      -8,
+      8
+    ],
+    "level": [
+      -12,
+      12
+    ]
+  },
+  "generating_function_coefficients": [
+    0,
+    1000
+  ],
+  "numerator_at_one": 63,
+  "numerator_at_minus_one": -3,
+  "numerator_mod_x_squared_plus_one": [
+    0,
+    -1
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "files": {
+    "pdf": {
+      "bytes": 91872,
+      "matches_public": true,
+      "path": "paper.pdf",
+      "public_sha256": "ece7cf1d656f065fb691b2db21c7c1a4c2ea488949475a455f9c28dbb534230c",
+      "sha256": "ece7cf1d656f065fb691b2db21c7c1a4c2ea488949475a455f9c28dbb534230c"
+    },
+    "source": {
+      "bytes": 16557,
+      "matches_public": true,
+      "path": "source.archive",
+      "public_sha256": "5a5aae1a75a53ecb3f44319e1ef184ddf60c4d61ccd6d2081cee2f58874d4447",
+      "sha256": "5a5aae1a75a53ecb3f44319e1ef184ddf60c4d61ccd6d2081cee2f58874d4447"
+    }
+  },
+  "source_identity": "Mathesis public projection",
+  "work": {
+    "abstract_text": "We prove Colin Barker's generating-function and recurrence conjectures of February 11, 2018 in the FORMULA fields of OEIS A299285 and A299286 for the tea uniform tiling. An exact distance formula reduces its graph spheres to integer hexagons in triangular layers. Their counts give a quadratic quasipolynomial of least period four, establish Stefano Spezia's conditional formula of June 8, 2024, and give the corresponding cubic ball count. We also prove that the proposed recurrences have the least possible eventual orders, six and seven. The same layer count proves the companion tcd formulas in A299287 and A299288. For arbitrary orientations of the tetrahedron–octahedron slabs, the tcd and tea counts are sharp lower and upper bounds, with sphere-count gap floor(n^2/8).",
+    "authors": [
+      {
+        "affiliation": "ChronoAI Pte Ltd, Singapore",
+        "name": "Haobo Ma"
+      },
+      {
+        "affiliation": "National University of Singapore; ChronoAI Pte Ltd, Singapore",
+        "name": "Wenlin Zhang"
+      }
+    ],
+    "concept_doi": null,
+    "current_version": 2,
+    "doi": null,
+    "lean_source": {
+      "revision": "e7f7c25c7de35e89418be730f50ec8fb94949133",
+      "url": "https://github.com/the-omega-institute/trureturing/blob/e7f7c25c7de35e89418be730f50ec8fb94949133/D5/S3/StatisticalMechanics/TeaCoordinationSequence.lean"
+    },
+    "license": "CC-BY-4.0",
+    "msc": [],
+    "pdf": {
+      "bytes": 91872,
+      "sha256": "ece7cf1d656f065fb691b2db21c7c1a4c2ea488949475a455f9c28dbb534230c",
+      "url": "/api/v1/collected-papers/barker-tea-coordination-sequence/files/pdf?version=2"
+    },
+    "previous_version": null,
+    "publication": "public",
+    "published_on": "2026-11-23T01:23:32.529298071Z",
+    "record": "barker-tea-coordination-sequence",
+    "repository_name": "barker-tea-coordination-sequence",
+    "source": {
+      "bytes": 16557,
+      "sha256": "5a5aae1a75a53ecb3f44319e1ef184ddf60c4d61ccd6d2081cee2f58874d4447",
+      "url": "/api/v1/collected-papers/barker-tea-coordination-sequence/files/source?version=2"
+    },
+    "title": "Proof of Barker's tea-tiling conjectures: OEIS A299285–A299286, FORMULA (February 11, 2018)",
+    "versions": [
+      {
+        "previous_version": null,
+        "published_on": "2026-11-23T01:23:32.529298071Z",
+        "revision": "2",
+        "version": 2
+      }
+    ],
+    "work": "barker-tea-coordination-sequence"
+  }
+}

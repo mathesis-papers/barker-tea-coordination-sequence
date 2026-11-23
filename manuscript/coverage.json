@@ -1,0 +1,41 @@
+{
+  "source_urls": [
+    "https://oeis.org/A299285",
+    "https://oeis.org/A299286",
+    "https://oeis.org/A056594",
+    "https://oeis.org/A299287",
+    "https://oeis.org/A299288",
+    "https://arxiv.org/abs/1803.08530v3",
+    "https://arxiv.org/abs/2305.08177v2",
+    "https://arxiv.org/abs/2310.19569v2"
+  ],
+  "verification_scope": {
+    "lean_declaration": "D5.S3.StatisticalMechanics.TeaCoordinationSequence.result",
+    "lean_statement": "The four positive-radius sphere-count identities for the integer coordinate graph teaGraph.",
+    "written_proofs": [
+      "Identification with Grunbaum's tiling 4",
+      "Exact graph distance and hexagonal layer enumeration",
+      "Shell and ball generating functions and recurrences",
+      "Spezia's closed form",
+      "Cubic ball count",
+      "Least eventual recurrence orders six and seven",
+      "Least quasipolynomial periods four",
+      "Companion tcd shell and ball formulas, generating functions and recurrences (A299287 and A299288)",
+      "Tcd least eventual recurrence orders four and five and least periods two",
+      "Spezia's tcd exponential generating function",
+      "Arbitrary slab orientations: exact sphere correction, sharp sphere and ball bounds, sphere equality conditions",
+      "Exact tea–tcd sphere gap floor(n^2/8) and its partial sums"
+    ],
+    "finite_checks": "Breadth-first spheres and distances for tea and tcd through radius 32; all 256 sign assignments on even boundaries -8 through 6 through radius 8; 43 A299285 values; 39 A299286 values; 44 A299287 values; 40 A299288 values; layer sums, generating-function coefficients and tea–tcd gaps through 1000; bounded hexagon and tea-edge checks."
+  },
+  "posing_locator": "OEIS A299285 and A299286, FORMULA, Colin Barker, February 11, 2018",
+  "extension_status": "Arbitrary slab orientations: not posed in the cited entries; proved in Corollary 6.",
+  "source_status": {
+    "A299285": "Barker formulas dated February 11, 2018; Sloane conjectural-status annotation June 12, 2024; Spezia conditional formula June 8, 2024.",
+    "A299286": "FORMULA explicitly labels Barker contributions Conjectures, February 11, 2018.",
+    "A299287": "Barker formulas February 11, 2018; Spezia exponential generating function June 8, 2024; proved in Corollary 5.",
+    "A299288": "Barker formulas February 11, 2018; proved in Corollary 5.",
+    "A056594": "Its defining period-four values identify the cosine term.",
+    "remaining_common_cross_references": "Not covered: other tilings have different slab graphs."
+  }
+}
