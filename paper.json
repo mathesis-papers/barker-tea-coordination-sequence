@@ -31,6 +31,7 @@
     "concept_doi": "10.5281/zenodo.24409049",
     "current_version": 2,
     "doi": "10.5281/zenodo.24409050",
+    "kind": "note",
     "lean_source": {
       "revision": "e7f7c25c7de35e89418be730f50ec8fb94949133",
       "url": "https://github.com/the-omega-institute/trureturing/blob/e7f7c25c7de35e89418be730f50ec8fb94949133/D5/S3/StatisticalMechanics/TeaCoordinationSequence.lean"
@@ -55,10 +56,12 @@
     "title": "Proof of Barker's tea-tiling conjectures: OEIS A299285–A299286, FORMULA (February 11, 2018)",
     "versions": [
       {
+        "changelog": null,
         "previous_version": null,
         "published_on": "2026-11-23T01:23:32.529298071Z",
         "revision": "2",
-        "version": 2
+        "version": 2,
+        "version_label": null
       }
     ],
     "work": "barker-tea-coordination-sequence"
